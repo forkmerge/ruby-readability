@@ -51,6 +51,9 @@ module Readability
 
       # Remove html comment tags
       @html.xpath('//comment()').each { |i| i.remove }
+      
+      # Remove html5 footer nodes
+      @html.css('footer').each { |i| i.remove }
     end
 
     def images(content=nil, reload=false)
@@ -327,8 +330,6 @@ module Readability
           content_score -= 3
         when "th"
           content_score -= 5
-        when "footer"
-          content_score -= 25
       end
       { :content_score => content_score, :elem => elem }
     end
