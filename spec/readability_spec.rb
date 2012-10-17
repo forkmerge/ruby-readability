@@ -345,6 +345,17 @@ describe Readability do
       @doc.content.should_not match("sidebar")
     end
   end
+  
+  describe "ignoring footers" do
+    before do
+      @doc = Readability::Document.new("<html><head><title>title!</title></head><body><div><p>Some content</p></div><footer><p>footer<p></footer></body>",
+                                       :min_text_length => 0, :retry_length => 1)
+    end
+
+    it "should not return the footer" do
+      @doc.content.should_not match("footer")
+    end
+  end
 
   describe "inserting space for block elements" do
     before do

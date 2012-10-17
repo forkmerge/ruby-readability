@@ -327,6 +327,8 @@ module Readability
           content_score -= 3
         when "th"
           content_score -= 5
+        when "footer"
+          content_score -= 25
       end
       { :content_score => content_score, :elem => elem }
     end
